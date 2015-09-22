@@ -1,0 +1,1 @@
+for i in `ls ANA*`;do mv $i "${i/ANA/AREK}" ;done
