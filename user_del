@@ -1,0 +1,6 @@
+for i in $(cat hcservers);do echo "###$i###"; 
+for j in $(cat userids); do ssh -t -t -go PasswordAuthentication=no -o ConnectTimeout=2 $i sudo lsuser $j; done; done >> usertest.txt
+for i in $(cat hcservers);do echo "##### $i #####";ssh -t -t -go PasswordAuthentication=no -o ConnectTimeout=3 $i sudo id; done
+for i in $(cat hcservers);do echo "##### $i #####";ssh -t -t -go PasswordAuthentication=no -o ConnectTimeout=2 $i sudo uname -a && id; done
+for i in $(cat hcservers);do echo "##### $i #####"; for j in $(cat userids); do ssh $i sudo lsuser $j; echo ""; done; done >> lsuser.txt
+for i in $(cat hcservers);do echo "##### $i #####"; for j in $(cat userids); do ssh $i sudo userdel -r $j; done; done  
