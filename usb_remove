@@ -10,6 +10,6 @@ do
 done
 
 dmesg -c
-#service syslog restart
+service syslog restart
 clear
 rm -f /var/log/rus 
