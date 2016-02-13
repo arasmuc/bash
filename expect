@@ -1,3 +1,14 @@
+
+#!/usr/bin/expect
+
+spawn /usr/bin/ssh cofinogagw
+set timeout 4
+
+expect "*twojlogin*" { send "ssh r160d2\r"; expect "twojlogin*" { send "twojehaslo1\r" }; expect "*:twojlogin:*" { send "sudo su -\r"; expect "*password*" { send "twojehaslo\r" } }
+expect "*root*" { send "sar 2 3\r" } }\ 
+
+
+**************************
 #!/usr/bin/expect
 set host [lindex $argv 0]
 spawn /usr/bin/ssh lasernim2
