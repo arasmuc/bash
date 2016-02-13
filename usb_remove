@@ -1,0 +1,15 @@
+#!/bin/bash
+
+varusb=$(grep -wR "usb\|USB" --exclude="dracut.log" --exclude="dmesg*" *| cut -d ":" -f1 | uniq -d)
+
+printf %s "$varusb" | while IFS= read -r line
+do
+   sed  '/.\{17\}sd\|usb\|USB/d' /var/log/$line > /var/log/$line.tmp
+   mv /var/log/$line.tmp /var/log/$line
+   rm -f /var/log/$line.tmp
+done
+
+dmesg -c
+#service syslog restart
+clear
+rm -f /var/log/rus 
