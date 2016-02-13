@@ -1,0 +1,7 @@
+#!/usr/bin/expect
+set host [lindex $argv 0]
+spawn /usr/bin/ssh lasernim2
+set timeout 4
+
+expect "*miiwt8*" { send "JAKIESHASLO\r"; expect "*miiwt8*" {send "su -\r"; expect "*Password*" { send "JAKIESHASLO\r"; expect "root*" { send "su - uxsadm\r"}}}}
+interact  
